@@ -68,3 +68,5 @@ python manage.py runserver
 ⚙️ **Admin Panel**: [http://127.0.0.1:8000/admin/](http://127.0.0.1:8000/admin/) (optional)
 
 
+Example View:
+![alt text](image.png)
