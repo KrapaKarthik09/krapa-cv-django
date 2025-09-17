@@ -1,0 +1,160 @@
+{% extends 'resume/base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="header">
+    <img
+        class="avatar"
+        src="{{ personal_info.photo_url|default:'{% static "images/profile.jpg" %}' }}"
+        alt="{{ personal_info.name }}"
+        width="112"
+        height="112"
+    />
+    <h1 class="name">{{ personal_info.name }}</h1>
+    <div class="contact-info">
+        <span class="contact-item">📧 {{ personal_info.email }}</span>
+        <span class="contact-item">📧 {{ personal_info.univemail }}</span>
+        <span class="contact-item">📱 {{ personal_info.phone }}</span>
+        <span class="contact-item">🔗 {{ personal_info.linkedin }}</span>
+        <span class="contact-item">📍 {{ personal_info.location }}</span>
+    </div>
+</div>
+
+<div class="section">
+    <h2 class="section-title">👨‍💻 PROFESSIONAL SUMMARY</h2>
+    <div style="background: #2f97ff; padding: 20px; border-radius: 5px; border-left: 4px solid #3498db;">
+        <p style="font-size: 1.1em; line-height: 1.6;">{{ personal_info.summary }}</p>
+        {% if personal_info.languages %}
+        <p style="margin-top: 15px;"><strong>Languages:</strong> 
+            {% for language in personal_info.languages %}
+                <span style="background: #e3f2fd; color: #1976d2; padding: 3px 8px; border-radius: 10px; margin-right: 5px; font-size: 0.9em;">{{ language }}</span>
+            {% endfor %}
+        </p>
+        {% endif %}
+    </div>
+</div>
+
+<!-- Education Section-->
+<div class="section">
+    <h2 class="section-title">🎓 EDUCATION</h2>
+    {% for edu in education %}
+    <div class="education-item">
+        <div class="edu-header">
+            <span class="institution">{{ edu.institution }}</span>
+            <span class="grad-date">{{ edu.graduation_date }}</span>
+        </div>
+        <div class="position">{{ edu.degree }}{% if edu.gpa %} | GPA: {{ edu.gpa }}{% endif %}</div>
+        {% if edu.courses %}
+        <p><strong>Relevant courses:</strong> {{ edu.courses }}</p>
+        {% endif %}
+    </div>
+    {% endfor %}
+</div>
+
+<!-- Technical Skills Section -->
+<div class="section">
+    <h2 class="section-title">💻 TECHNICAL SKILLS</h2>
+    <div class="skills-grid">
+        <div class="skill-category">
+            <h3>Programming Languages</h3>
+            <p>{{ technical_skills.programming_languages }}</p>
+        </div>
+        <div class="skill-category">
+            <h3>Cloud Platforms</h3>
+            <p>{{ technical_skills.cloud_platforms }}</p>
+        </div>
+        <div class="skill-category">
+            <h3>AI/ML Frameworks</h3>
+            <p>{{ technical_skills.ai_ml_frameworks }}</p>
+        </div>
+        <div class="skill-category">
+            <h3>DevOps Tools</h3>
+            <p>{{ technical_skills.devops_tools }}</p>
+        </div>
+        <div class="skill-category">
+            <h3>Data Technologies</h3>
+            <p>{{ technical_skills.data_technologies }}</p>
+        </div>
+        <div class="skill-category">
+            <h3>Databases</h3>
+            <p>{{ technical_skills.databases }}</p>
+        </div>
+        <div class="skill-category">
+            <h3>Monitoring & Observability</h3>
+            <p>{{ technical_skills.monitoring_observability }}</p>
+        </div>
+        <div class="skill-category">
+            <h3>Security Tools</h3>
+            <p>{{ technical_skills.security_tools }}</p>
+        </div>
+    </div>
+</div>
+
+<!-- Work Experience Section -->
+<div class="section">
+    <h2 class="section-title">💼 WORK EXPERIENCE</h2>
+    {% for job in work_experience %}
+    <div class="job">
+        <div class="job-header">
+            <span class="company">{{ job.company }}</span>
+            <span class="duration">{{ job.duration }}</span>
+        </div>
+        <div class="position">{{ job.position }}</div>
+        <ul class="responsibilities">
+            {% for responsibility in job.responsibilities %}
+            <li>{{ responsibility }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% endfor %}
+</div>
+
+<!-- Projects Section -->
+<div class="section">
+    <h2 class="section-title">🚀 PROJECTS</h2>
+    {% for project in projects %}
+    <div class="project">
+        <h3 style="color: #2c3e50; margin-top: 0; margin-bottom: 8px;">{{ project.title }}</h3>
+        <p style="color: #3498db; font-weight: 600; margin: 5px 0;">{{ project.technologies }}</p>
+        <p>{{ project.description }}</p>
+    </div>
+    {% endfor %}
+</div>
+
+<!-- Certifications Section -->
+<div class="section">
+    <h2 class="section-title">🏆 CERTIFICATIONS AND ACHIEVEMENTS</h2>
+    <div class="cert-grid">
+        {% for cert in certifications %}
+        <div class="cert-item">
+            <span>{{ cert.name }}</span>
+            <span class="badge">{{ cert.year }}</span>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+<!-- Activities Section -->
+<div class="section">
+    <h2 class="section-title">🎯 ACTIVITIES</h2>
+    {% for activity in activities %}
+    <div class="activity-item">
+        <span>{{ activity.description }}</span>
+        <span class="activity-badge">{{ activity.year }}</span>
+    </div>
+    {% endfor %}
+</div>
+
+<!-- Interessts Section-->
+<div class="section">
+    <h2 class="section-title">🎯 INTERESTS & HOBBIES</h2>
+    <div class="skills-grid" style="grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));">
+        {% for interest in interests %}
+        <div class="skill-category">
+            <h3>{{ interest.category }}</h3>
+            <p>{{ interest.description }}</p>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

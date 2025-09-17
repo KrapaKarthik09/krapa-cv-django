@@ -1,0 +1,29 @@
+{% extends 'resume/base.html' %}
+
+{% block title %}{{ page_title }}{% endblock %}
+
+{% block content %}
+<div class="header">
+    <h1 class="name">{{ page_title }}</h1>
+    <p style="font-size: 1.2em; color: #666; margin-top: 20px;">{{ description }}</p>
+</div>
+
+<div class="section">
+    <h2 class="section-title">About This Project</h2>
+    <div style="background: #f8f9fa; padding: 20px; border-radius: 5px; border-left: 4px solid #3498db;">
+        <p><strong>This Django CV application demonstrates:</strong></p>
+        <ul style="margin: 15px 0; padding-left: 20px;">
+            <li>Django Views with context data</li>
+            <li>Django Template system with inheritance</li>
+            <li>Django URL routing and app structure</li>
+            <li>Dynamic HTML generation (not static HTML)</li>
+            <li>Professional responsive design</li>
+        </ul>
+        <p><em>Created as a Django assignment to convert CV to HTML using Django framework.</em></p>
+    </div>
+</div>
+
+<div style="text-align: center; margin-top: 30px;">
+    <a href="{% url 'resume:cv' %}" style="background: #3498db; color: white; padding: 12px 30px; text-decoration: none; border-radius: 25px; display: inline-block;">← Back to Resume</a>
+</div>
+{% endblock %}
